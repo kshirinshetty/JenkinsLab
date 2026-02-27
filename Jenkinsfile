@@ -32,7 +32,7 @@ pipeline {
                 --name nginx-lb \
                 --network app-network \
                 -p 80:80 \
-                -v $PWD/nginx:/etc/nginx/conf.d \
+                -v $WORKSPACE/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro \
                 nginx
                 '''
             }
