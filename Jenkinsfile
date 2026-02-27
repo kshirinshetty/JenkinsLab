@@ -28,12 +28,13 @@ pipeline {
                 sh '''
                 docker rm -f nginx-lb || true
         
+                docker build -t custom-nginx ./nginx
+        
                 docker run -d \
                 --name nginx-lb \
                 --network app-network \
                 -p 80:80 \
-                -v $WORKSPACE/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro \
-                nginx
+                custom-nginx
                 '''
             }
         }
